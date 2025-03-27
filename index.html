@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGSITS Club Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="C:\Users\cj450\Downloads\web dev project\images\download.jpg" height="40" alt="SGSITS Logo">
+      </a>
+      
+        
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#clubs">Clubs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        </ul>
+        <button id="nav-login" class="btn btn-outline-light">Login</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">Club Portal Login</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="login-form">
+            <div class="mb-3">
+              <label for="login-email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="login-email" required>
+              <div class="invalid-feedback">Please enter a valid SGSITS email</div>
+            </div>
+            <div class="mb-3">
+              <label for="login-password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="login-password" required>
+              <div class="invalid-feedback">Password must be at least 6 characters</div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+          </form>
+          <div class="text-center mt-3">
+            <p class="mb-0">New user? <a href="#" id="show-register">Register here</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div id="register-modal" class="modal fade">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">Create Account</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="register-form">
+            <div class="mb-3">
+              <label for="register-name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="register-name" required>
+            </div>
+            <div class="mb-3">
+              <label for="register-email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="register-email" required>
+              <div class="invalid-feedback">Please use a valid SGSITS email</div>
+            </div>
+            <div class="mb-3">
+              <label for="register-password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="register-password" required>
+              <div class="invalid-feedback">Password must be at least 6 characters</div>
+            </div>
+            <div class="mb-3">
+              <label for="register-department" class="form-label">Department</label>
+              <select class="form-select" id="register-department" required>
+                <option value="">Select Department</option>
+                <option value="CSE">Computer Science</option>
+                <option value="ME">Mechanical</option>
+                <option value="EE">Electrical</option>
+                <option value="CE">Civil</option>
+                <option value="ECE">Electronics</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
+          </form>
+          <div class="text-center mt-3">
+            <p class="mb-0">Already have an account? <a href="#" id="show-login">Login here</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container py-5">
+    <section id="home" class="mb-5">
+      <div class="hero-section text-center py-5">
+        <h1 class="display-4 fw-bold mb-4">Welcome to SGSITS Clubs</h1>
+        <p class="lead">Explore, Join and Participate in various technical and cultural clubs</p>
+      </div>
+    </section>
+
+    <section id="clubs" class="mb-5">
+      <h2 class="section-title mb-4">Our Clubs</h2>
+      <div class="row" id="clubs-container">
+        <!-- Clubs will be loaded here dynamically -->
+      </div>
+    </section>
+
+    <section id="events" class="mb-5">
+      <h2 class="section-title mb-4">Upcoming Events</h2>
+      <div class="row" id="events-container">
+        <!-- Events will be loaded here dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>About SGSITS</h5>
+          <p>Shri Govindram Seksaria Institute of Technology and Science, Indore</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-light">College Website</a></li>
+            <li><a href="#" class="text-light">Student Portal</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact</h5>
+          <address>
+            Khandwa Road, Indore<br>
+            Madhya Pradesh, India<br>
+            Email: info@sgsits.ac.in
+          </address>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <p>&copy; 2023 SGSITS Club Portal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+   <!-- In your HTML -->
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
