@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Registration - SGSITS Club Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .invalid-feedback {
+      display: none;
+      color: #dc3545;
+    }
+    .is-invalid ~ .invalid-feedback {
+      display: block;
+    }
+    .was-validated .form-control:invalid,
+    .was-validated .form-select:invalid {
+      border-color: #dc3545;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="images/download.jpg" height="40" alt="SGSITS Logo">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#clubs">Clubs</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#events">Events</a></li>
+        </ul>
+        <button id="nav-login" class="btn btn-outline-light">Login</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <div id="event-register-container" class="row justify-content-center">
+      <div class="col-md-8">
+        <div id="event-info" class="card mb-4">
+          <!-- Event info will be loaded here -->
+        </div>
+        
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title mb-4">Event Registration Form</h3>
+            <form id="registration-form" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" required>
+                <div class="invalid-feedback">Please enter your full name</div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" required>
+                <div class="invalid-feedback" id="email-feedback">Please enter a valid SGSITS email</div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="department" class="form-label">Department</label>
+                <select class="form-select" id="department" required>
+                  <option value="">Select Department</option>
+                  <option value="CSE">Computer Science</option>
+                  <option value="ME">Mechanical</option>
+                  <option value="EE">Electrical</option>
+                  <option value="CE">Civil</option>
+                  <option value="ECE">Electronics</option>
+                </select>
+                <div class="invalid-feedback">Please select your department</div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="year" class="form-label">Year</label>
+                <select class="form-select" id="year" required>
+                  <option value="">Select Year</option>
+                  <option value="1">First Year</option>
+                  <option value="2">Second Year</option>
+                  <option value="3">Third Year</option>
+                  <option value="4">Fourth Year</option>
+                </select>
+                <div class="invalid-feedback">Please select your year</div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="contact" class="form-label">Contact Number</label>
+                <input type="tel" class="form-control" id="contact" pattern="[0-9]{10}" required>
+                <div class="invalid-feedback">Please enter a valid 10-digit phone number</div>
+              </div>
+              
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="terms" required>
+                <label class="form-check-label" for="terms">I agree to the terms and conditions</label>
+                <div class="invalid-feedback">You must agree to the terms</div>
+              </div>
+              
+              <button type="submit" class="btn btn-primary w-100">Submit Registration</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-dark text-light py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>About SGSITS</h5>
+          <p>Shri Govindram Seksaria Institute of Technology and Science, Indore</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-light">College Website</a></li>
+            <li><a href="#" class="text-light">Student Portal</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact</h5>
+          <address>
+            Khandwa Road, Indore<br>
+            Madhya Pradesh, India<br>
+            Email: info@sgsits.ac.in
+          </address>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <p>&copy; 2023 SGSITS Club Portal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load event info
+      const urlParams = new URLSearchParams(window.location.search);
+      const eventId = urlParams.get('id');
+      
+      // Sample event data - in real app, fetch from API
+      const eventsData = [
+        {
+          id: 1,
+          title: "Robo Wars",
+          club: "Robotics Club",
+          date: "2023-11-15",
+          description: "Annual robotics competition with exciting challenges and prizes.",
+          venue: "Main Auditorium",
+          time: "10:00 AM"
+        },
+        {
+          id: 2,
+          title: "Code Sprint",
+          club: "CodeChef Chapter",
+          date: "2023-11-20",
+          description: "24-hour competitive coding marathon for all skill levels.",
+          venue: "Computer Center",
+          time: "9:00 AM"
+        },
+        {
+          id: 3,
+          title: "Nukkad Natak",
+          club: "Dramatics Club",
+          date: "2023-11-25",
+          description: "Street play competition on social issues.",
+          venue: "Open Air Theatre",
+          time: "5:00 PM"
+        }
+      ];
+      
+      const event = eventsData.find(e => e.id == eventId);
+      
+      if (event) {
+        document.getElementById('event-info').innerHTML = `
+          <div class="card-body">
+            <h4 class="card-title">${event.title}</h4>
+            <p class="text-muted"><i class="fas fa-calendar-alt"></i> ${new Date(event.date).toDateString()} at ${event.time}</p>
+            <p class="card-text">${event.description}</p>
+            <p><i class="fas fa-map-marker-alt"></i> ${event.venue}</p>
+            <p><i class="fas fa-users"></i> Organized by: ${event.club}</p>
+          </div>
+        `;
+      } else {
+        document.getElementById('event-register-container').innerHTML = `
+          <div class="col-12 text-center py-5">
+            <h2>Event not found</h2>
+            <a href="index.html" class="btn btn-primary">Back to Events</a>
+          </div>
+        `;
+      }
+
+      // Form validation
+      const form = document.getElementById('registration-form');
+      const emailInput = document.getElementById('email');
+      const emailFeedback = document.getElementById('email-feedback');
+      
+      // Email validation function
+      function isValidEmail(email) {
+        const re = /^[a-zA-Z0-9._%+-]+@(sgsits\.ac\.in|student\.sgsits\.ac\.in)$/;
+        return re.test(String(email).toLowerCase());
+      }
+      
+      // Custom email validation
+      emailInput.addEventListener('input', () => {
+        if (emailInput.value && !isValidEmail(emailInput.value)) {
+          emailInput.classList.add('is-invalid');
+          emailFeedback.textContent = 'Please use a valid SGSITS email (ends with @sgsits.ac.in or @student.sgsits.ac.in)';
+        } else {
+          emailInput.classList.remove('is-invalid');
+        }
+      });
+      
+      // Form submission
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Validate SGSITS email
+        if (!isValidEmail(emailInput.value)) {
+          emailInput.classList.add('is-invalid');
+          emailFeedback.textContent = 'Please use a valid SGSITS email (ends with @sgsits.ac.in or @student.sgsits.ac.in)';
+          return;
+        }
+        
+        // Check general form validity
+        if (!form.checkValidity()) {
+          e.preventDefault();
+          e.stopPropagation();
+          form.classList.add('was-validated');
+          return;
+        }
+        
+        // If all validations pass
+        form.classList.add('was-validated');
+        
+        // In a real app, you would send this to your backend
+        const formData = {
+          eventId: eventId,
+          name: document.getElementById('name').value,
+          email: emailInput.value,
+          department: document.getElementById('department').value,
+          year: document.getElementById('year').value,
+          contact: document.getElementById('contact').value
+        };
+        
+        console.log('Registration submitted:', formData);
+        
+        // Show success message
+        alert(`Registration successful for ${event.title}!\nYou will receive a confirmation email at ${emailInput.value}`);
+        
+        // Optionally redirect or reset form
+        form.reset();
+        // window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+</html>

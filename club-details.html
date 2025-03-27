@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Club Details - SGSITS Club Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="images/download.jpg" height="40" alt="SGSITS Logo">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#clubs">Clubs</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#events">Events</a></li>
+        </ul>
+        <button id="nav-login" class="btn btn-outline-light">Login</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <div id="club-details-container" class="row">
+      <!-- Club details will be loaded here -->
+    </div>
+  </main>
+
+  <footer class="bg-dark text-light py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>About SGSITS</h5>
+          <p>Shri Govindram Seksaria Institute of Technology and Science, Indore</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-light">College Website</a></li>
+            <li><a href="#" class="text-light">Student Portal</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact</h5>
+          <address>
+            Khandwa Road, Indore<br>
+            Madhya Pradesh, India<br>
+            Email: info@sgsits.ac.in
+          </address>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <p>&copy; 2023 SGSITS Club Portal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const clubId = parseInt(urlParams.get('id'));
+      
+      // Club data - same as in script.js
+      const clubsData = [
+        {
+          id: 1,
+          name: "Robotics Club",
+          description: "Explore the world of robotics and automation with hands-on projects and workshops.",
+          category: "Technical",
+          members: 85,
+          logo: "images/images.jpg",
+          faculty: "Dr. A. Sharma",
+          email: "robotics@sgsits.ac.in"
+        },
+        {
+          id: 2,
+          name: "CodeChef Chapter",
+          description: "Competitive programming club that organizes coding contests and workshops.",
+          category: "Technical",
+          members: 120,
+          logo: "images/pasted image 0.png",
+          faculty: "Dr. B. Patel",
+          email: "codechef@sgsits.ac.in"
+        },
+        {
+          id: 3,
+          name: "Dramatics Club",
+          description: "For students passionate about theatre, acting, and stage performances.",
+          category: "Cultural",
+          members: 65,
+          logo: "images/dramatics.jpg",
+          faculty: "Prof. C. Verma",
+          email: "drama@sgsits.ac.in"
+        },
+        {
+          id: 4,
+          name: "Music Club",
+          description: "Bringing together musicians and music enthusiasts for performances and jam sessions.",
+          category: "Cultural",
+          members: 90,
+          logo: "images/music.jpg",
+          faculty: "Dr. D. Singh",
+          email: "music@sgsits.ac.in"
+        },
+        {
+          id: 5,
+          name: "Entrepreneurship Cell",
+          description: "Fostering entrepreneurial mindset through workshops, speaker sessions and competitions.",
+          category: "Management",
+          members: 110,
+          logo: "images/ecell.jpg",
+          faculty: "Dr. E. Gupta",
+          email: "ecell@sgsits.ac.in"
+        },
+        {
+          id: 6,
+          name: "Gsph Club sgsits",
+          description: "For photography enthusiasts to learn, share and capture moments.",
+          category: "Arts",
+          members: 75,
+          logo: "images/images.jpg",
+          faculty: "Prof. F. Khan",
+          email: "photo@sgsits.ac.in"
+        }
+      ];
+      
+      const club = clubsData.find(c => c.id === clubId);
+      
+      if (club) {
+        const container = document.getElementById('club-details-container');
+        container.innerHTML = `
+          <div class="col-md-4">
+            <img src="${club.logo}" class="img-fluid rounded" alt="${club.name}" 
+                 onerror="this.src='images/default-club.jpg';this.onerror=null;">
+          </div>
+          <div class="col-md-8">
+            <h2>${club.name}</h2>
+            <span class="badge bg-primary mb-3">${club.category}</span>
+            <p>${club.description}</p>
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title">Club Information</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Faculty Incharge:</strong> ${club.faculty}</li>
+                  <li class="list-group-item"><strong>Email:</strong> <a href="mailto:${club.email}">${club.email}</a></li>
+                  <li class="list-group-item"><strong>Members:</strong> ${club.members}</li>
+                </ul>
+              </div>
+            </div>
+            <a href="index.html" class="btn btn-primary">Back to Clubs</a>
+          </div>
+        `;
+      } else {
+        document.getElementById('club-details-container').innerHTML = `
+          <div class="col-12 text-center py-5">
+            <h2>Club not found</h2>
+            <a href="index.html" class="btn btn-primary">Back to Clubs</a>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

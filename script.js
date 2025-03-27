@@ -102,6 +102,22 @@ const eventsData = [
     time: "5:00 PM"
   }
 ];
+// Event Listeners
+navLoginBtn.addEventListener('click', () => {
+  loginModal.show();
+});
+
+showRegister.addEventListener('click', (e) => {
+  e.preventDefault();
+  loginModal.hide();
+  registerModal.show();
+});
+
+showLogin.addEventListener('click', (e) => {
+  e.preventDefault();
+  registerModal.hide();
+  loginModal.show();
+});
 
 // Email validation function
 function isValidEmail(email) {
@@ -129,12 +145,20 @@ function displayClubs() {
           <p class="card-text">${club.description}</p>
           <div class="d-flex justify-content-between align-items-center">
             <small class="text-muted"><i class="fas fa-users"></i> ${club.members} members</small>
-            <button class="btn btn-sm btn-outline-primary">View Details</button>
+            <button class="btn btn-sm btn-outline-primary view-club" data-id="${club.id}">View Details</button>
           </div>
         </div>
       </div>
     `;
     clubsContainer.appendChild(card);
+  });
+
+  // Add event listeners to all view buttons
+  document.querySelectorAll('.view-club').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const clubId = e.target.getAttribute('data-id');
+      window.location.href = `club-details.html?id=${clubId}`;
+    });
   });
 }
 
@@ -152,31 +176,25 @@ function displayEvents() {
           <p class="card-text">${event.description}</p>
           <div class="d-flex justify-content-between align-items-center">
             <small class="text-muted"><i class="fas fa-map-marker-alt"></i> ${event.venue}</small>
-            <button class="btn btn-sm btn-outline-primary">Register</button>
+            <button class="btn btn-sm btn-outline-primary register-event" data-id="${event.id}">Register</button>
           </div>
         </div>
       </div>
     `;
     eventsContainer.appendChild(card);
   });
+
+  // Add event listeners to all register buttons
+  document.querySelectorAll('.register-event').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const eventId = e.target.getAttribute('data-id');
+      window.location.href = `event-register.html?id=${eventId}`;
+    });
+  });
 }
 
 // Event Listeners
-navLoginBtn.addEventListener('click', () => {
-  loginModal.show();
-});
 
-showRegister.addEventListener('click', (e) => {
-  e.preventDefault();
-  loginModal.hide();
-  registerModal.show();
-});
-
-showLogin.addEventListener('click', (e) => {
-  e.preventDefault();
-  registerModal.hide();
-  loginModal.show();
-});
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault();

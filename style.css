@@ -111,3 +111,24 @@ footer {
     margin-bottom: 15px;
   }
 }
+/* Login error message */
+#login-error {
+  transition: all 0.3s ease;
+}
+
+/* Modal transitions */
+.modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out;
+}
+
+/* Button states */
+.btn-outline-light:hover {
+  color: #212529 !important;
+}
+
+/* Responsive modal adjustments */
+@media (max-width: 576px) {
+  .modal-dialog {
+    margin: 0.5rem auto;
+  }
+}
